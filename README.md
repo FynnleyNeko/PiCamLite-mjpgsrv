@@ -1,2 +1,1 @@
-# PiCamLite-mjpgsrv
-MJPEG server used in PiCamLite
+```python -m nuitka --standalone --onefile --lto=yes --pgo-python --windows-console-mode=disable --company-name=FynnleyNeko --copyright="(C) FynnleyNeko, 2025" --product-name=PiCamLite-mjpgsrv --file-description="Integrated MJPEG server" --file-version=1.0.2.0 --product-version=1.0.2.0 --windows-icon-from-ico=mjpgsrv.ico mjpgsrv.py```
