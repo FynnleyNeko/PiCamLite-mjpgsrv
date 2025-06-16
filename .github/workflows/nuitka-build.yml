@@ -1,0 +1,36 @@
+name: Nuitka build
+on: workflow_dispatch
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13.5'
+          architecture: 'x64'
+          cache: 'pip'
+          cache-dependency-path: |
+            requirements.txt
+      - name: Install Dependencies
+        run: |
+          pip install -r requirements.txt
+      - uses: Nuitka/Nuitka-Action@v1.3
+        with:
+          nuitka-version: 2.7.7
+          script-name: mjpgsrv.py
+          mode: app
+          company-name: FynnleyNeko
+          product-name: PiCamLite-mjpgsrv
+          file-version: 1.0.2.0
+          product-version: 1.0.2.0
+          file-description: "Integrated MJPEG server"
+          copyright: "(C) FynnleyNeko, 2025"
+          windows-console-mode: disable
+          windows-icon-from-ico: mjpgsrv.ico
+          lto: yes
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: exe
+          path: build/mjpgsrv.exe
